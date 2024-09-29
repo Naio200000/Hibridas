@@ -2,6 +2,7 @@
   "name": "ejercicio-1",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "description": "Desafio-2",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
