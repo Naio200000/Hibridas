@@ -11,13 +11,18 @@ const materia = {
         {dia: 'Miercoles', hora: '21:10'}
     ]
 }
-
 const profesor = {
     name: 'Camila Belén Marcos Galban',
     mail: 'camila.marcosgalban@davinci.edu.ar'
 }
 
 app.use(express.json());
+
+app.use((req, res) => {
+
+    res.status(404)
+        .send('No se encontró la pagina que está buscando')
+})
 
 app.get('/', (req, res) => {
 
