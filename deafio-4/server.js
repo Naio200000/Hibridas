@@ -1,5 +1,13 @@
 import express from 'express'
+import fs, { read } from 'fs'
 
+function readProductsFile () {
+
+    const products = fs.readdirSync('productos.json', 'utf8');
+
+    return JSON.parse(products);
+    
+}
 const app = express()
 const PORT = 3000;
 
@@ -24,8 +32,6 @@ const peliculas = [
     {id: 5, title: 'Porco Rosso', release: '1992'},
 ]
 
-
-  
 
 app.use(express.json());
 
@@ -76,6 +82,12 @@ app.get('/peliculas/:id', (req, res) => {
         .json(peliculas)
 })
 
+
+app.get('/productos', (req, res) => {
+
+    const productos = readProductsFile();
+    res.status(200).json(productos)
+})
 app.use((req, res) => {
 
     res.status(404)
