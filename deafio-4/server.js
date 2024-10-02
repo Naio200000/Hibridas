@@ -31,7 +31,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
 
     res.status(200)
-        .send('Nicolas Alsinet')
+        .json({mensaje:'Nicolas Alsinet'})
 })
 
 app.get('/materia', (req, res) => {
@@ -61,11 +61,11 @@ app.get('/peliculas/:id', (req, res) => {
     if (peliculas.some(p => p.id === peliculasId)) {
 
         res.status(200)
-            .send('La película ya se encuentra en Favoritos');
+            .json({mensaje:'La película ya se encuentra en Favoritos'});
         } else {
 
         res.status(404)
-            .send('No se encontró la Película');
+            .json({mensaje: 'No se encontró la Película'});
             
     }
 
@@ -76,7 +76,7 @@ app.get('/peliculas/:id', (req, res) => {
 app.use((req, res) => {
 
     res.status(404)
-        .send('No se encontró la pagina que está buscando')
+        .json({mensaje: 'No se encontró la pagina que está buscando'})
 })
 
 app.listen(PORT, () => console.log('El Servidor está funcionando'))
