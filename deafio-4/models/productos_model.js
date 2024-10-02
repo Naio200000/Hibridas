@@ -10,3 +10,5 @@ function readProductsFile () {
     return JSON.parse(products);
     
 }
+
+export {readProductsFile}
