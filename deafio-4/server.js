@@ -1,13 +1,6 @@
 import express from 'express'
 import fs from 'fs'
 
-function readProductsFile () {
-
-    const products = fs.readFileSync('productos.json', 'utf8');
-
-    return JSON.parse(products);
-    
-}
 const app = express()
 const PORT = 3000;
 
