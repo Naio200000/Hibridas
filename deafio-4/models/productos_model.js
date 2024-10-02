@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-const filePath = path.join(__dirname, '../data/productos.json')
+const filePath = path.join('../data/productos.json')
 
 function readProductsFile () {
 
@@ -12,3 +12,4 @@ function readProductsFile () {
 }
 
 export {readProductsFile}
+

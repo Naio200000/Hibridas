@@ -1,4 +1,4 @@
-import { readProductsFile } from "../models/productos_model";
+import { readProductsFile } from "../Models/productos_model.js";
 
 
 function getAllProducts () {

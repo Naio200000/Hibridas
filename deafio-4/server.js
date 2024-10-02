@@ -1,5 +1,5 @@
 import express from 'express'
-import productosRoutes from './routes/productos_routes.js'; 
+import productosRoutes from './Routes/productos_routes.js'; 
 
 const app = express()
 const PORT = 3000;
