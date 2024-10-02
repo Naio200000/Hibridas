@@ -1,9 +1,9 @@
 import express from 'express'
-import fs, { read } from 'fs'
+import fs from 'fs'
 
 function readProductsFile () {
 
-    const products = fs.readdirSync('productos.json', 'utf8');
+    const products = fs.readFileSync('productos.json', 'utf8');
 
     return JSON.parse(products);
     
@@ -86,8 +86,25 @@ app.get('/peliculas/:id', (req, res) => {
 app.get('/productos', (req, res) => {
 
     const productos = readProductsFile();
-    res.status(200).json(productos)
+    res.status(200)
+        .json(productos)
 })
+
+app.get('/productos/:id', (req, res) => {
+
+    const productoId = parseInt(req.params.id);
+    const productos = readProductsFile();
+    const producto = productos.find(p => p.id === productoId);
+
+    if (producto) {
+        res.status(200)
+            .json(producto)
+    } else {
+        res.status(404)
+            .json({mensaje: 'No se encontró el Producto'})
+    }
+})
+
 app.use((req, res) => {
 
     res.status(404)
