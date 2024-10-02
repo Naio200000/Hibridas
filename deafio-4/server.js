@@ -1,5 +1,5 @@
 import express from 'express'
-import fs from 'fs'
+import productosRoutes from './routes/productos_routes.js'; 
 
 const app = express()
 const PORT = 3000;
@@ -16,15 +16,6 @@ const profesor = {
     name: 'Camila Belén Marcos Galban',
     mail: 'camila.marcosgalban@davinci.edu.ar'
 }
-
-const peliculas = [
-    {id: 1, title: 'El viaje de Chijiro', release: '2001'},
-    {id: 2, title: 'La princesa Mononoke', release: '1997'},
-    {id: 3, title: 'El viento se levanta', release: '2013'},
-    {id: 4, title: 'El castillo ambulante', release: '2004'},
-    {id: 5, title: 'Porco Rosso', release: '1992'},
-]
-
 
 app.use(express.json());
 
@@ -76,15 +67,7 @@ app.get('/peliculas/:id', (req, res) => {
 })
 
 
-app.get('/productos', (req, res) => {
-
-
-})
-
-app.get('/productos/:id', (req, res) => {
-
-
-})
+app.use('/productos',productosRoutes);
 
 app.use((req, res) => {
 
