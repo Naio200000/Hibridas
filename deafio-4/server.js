@@ -24,18 +24,7 @@ const peliculas = [
     {id: 5, title: 'Porco Rosso', release: '1992'},
 ]
 
-const movies = [
-    { id: 1, title: 'Inception', price: 12.99 },
-    { id: 2, title: 'The Dark Knight', price: 10.99 },
-    { id: 3, title: 'Interstellar', price: 14.99 },
-    { id: 4, title: 'The Matrix', price: 9.99 },
-    { id: 5, title: 'Avengers: Endgame', price: 15.99 },
-    { id: 6, title: 'The Lord of the Rings', price: 13.99 },
-    { id: 7, title: 'Fight Club', price: 8.99 },
-    { id: 8, title: 'Forrest Gump', price: 7.99 },
-    { id: 9, title: 'Pulp Fiction', price: 11.99 },
-    { id: 10, title: 'Gladiator', price: 9.49 }
-  ];
+
   
 
 app.use(express.json());
