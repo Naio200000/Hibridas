@@ -1,5 +1,6 @@
 import express from 'express'
-import productosRoutes from './Routes/productos_routes.js'; 
+import fs from "fs"
+
 
 const app = express()
 const PORT = 3000;
@@ -17,8 +18,23 @@ const profesor = {
     mail: 'camila.marcosgalban@davinci.edu.ar'
 }
 
-app.use(express.json());
 
+
+function readProductsFile () {
+
+    const products = fs.readFileSync('productos.json', 'utf8');
+
+    return JSON.parse(products);  
+}
+
+function readpeliculasFile () {
+
+    const peliculas = fs.readFileSync('peliculas.json', 'utf8');
+
+    return JSON.parse(peliculas);  
+}
+
+app.use(express.json());
 
 
 app.get('/', (req, res) => {
@@ -43,6 +59,7 @@ app.get('/profesor', (req, res) => {
 
 app.get('/peliculas', (req, res) => {
 
+    const peliculas = readpeliculasFile ()
     res.status(200)
         .json(peliculas)
 })
@@ -66,8 +83,27 @@ app.get('/peliculas/:id', (req, res) => {
         .json(peliculas)
 })
 
+app.get('/productos', (req, res) => {
 
-app.use('/productos',productosRoutes);
+    const productos = readProductsFile();
+    res.status(200)
+        .json(productos)
+});
+
+app.get('/productos/:id', ( req, res) => {
+
+    const productoId = parseInt(req.params.id);
+    const productos = readProductsFile();
+    const producto = productos.find(p => p.id === productoId);
+
+    if (producto) {
+        res.status(200)
+            .json(producto)
+    } else {
+        res.status(404)
+            .json({mensaje: 'No se encontró el Producto'})
+    }
+});
 
 app.use((req, res) => {
 
