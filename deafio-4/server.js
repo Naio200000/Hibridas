@@ -16,13 +16,17 @@ const profesor = {
     mail: 'camila.marcosgalban@davinci.edu.ar'
 }
 
+const peliculas = [
+    {id: 1, title: 'El viaje de Chijiro', release: '2001'},
+    {id: 2, title: 'La princesa Mononoke', release: '1997'},
+    {id: 3, title: 'El viento se levanta', release: '2013'},
+    {id: 4, title: 'El castillo ambulante', release: '2004'},
+    {id: 5, title: 'Porco Rosso', release: '1992'},
+]
+
 app.use(express.json());
 
-app.use((req, res) => {
 
-    res.status(404)
-        .send('No se encontró la pagina que está buscando')
-})
 
 app.get('/', (req, res) => {
 
@@ -40,6 +44,39 @@ app.get('/profesor', (req, res) => {
 
     res.status(200)
         .json(profesor)
+})
+
+// Peliculas
+
+app.get('/peliculas', (req, res) => {
+
+    res.status(200)
+        .json(peliculas)
+})
+
+app.get('/peliculas/:id', (req, res) => {
+
+    const peliculasId = parseInt(req.params.id);
+
+    if (peliculas.some(p => p.id === peliculasId)) {
+
+        res.status(200)
+            .send('La película ya se encuentra en Favoritos');
+        } else {
+
+        res.status(404)
+            .send('No se encontró la Película');
+            
+    }
+
+    res.status(200)
+        .json(peliculas)
+})
+
+app.use((req, res) => {
+
+    res.status(404)
+        .send('No se encontró la pagina que está buscando')
 })
 
 app.listen(PORT, () => console.log('El Servidor está funcionando'))
